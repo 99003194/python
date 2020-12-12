@@ -1,0 +1,126 @@
+class starting:
+    def _init_(self, num):
+        self.num = num
+
+    def check_visa(self, num):
+        if num[0] == '4':
+            return True
+        else:
+            return False
+
+    def check_Master(self, num):
+        if num[0] == '5':
+            return True
+        else:
+            return False
+
+    def check_Discover(self, num):
+        if num[0] == '6':
+            return True
+        else:
+            return False
+
+    def check_American(self, num):
+        if num[0] == '3':
+            return True
+        else:
+            return False
+
+
+class length:
+    def _init_(self, num):
+        self.num = num
+
+    def val_len(self, num):
+        if "-" in num:
+            s = len(str((num)))
+            if(s == 19):
+                return True
+            else:
+                return False
+        else:
+            s = len(str((num)))
+            if(s != 16):
+                return False
+            else:
+                return True
+
+
+class digit:
+    def _init_(self, num):
+        self.num = num
+
+    def val_isdigit(self, num):
+        for i in num:
+            if not (((i >= '0') and (i <= '9')) or (i == '-')):
+                return False
+                break
+            else:
+                return True
+                break
+
+
+class group:
+    def _init_(self, num):
+        self.num = num
+
+    def val_group(self, num):
+        if "-" in num:
+            list1 = num.split("-")
+            if(len(list1) == 4):
+                if(len(list1[0])) == 4:
+                    return True
+                if(len(list1[1])) == 4:
+                    return True
+                if(len(list1[2])) == 4:
+                    return True
+                if(len(list1[3])) == 4:
+                    return True
+            else:
+                return False
+card_number = input("enter card number: ")
+obj1 = starting()
+obj2 = length()
+obj3 = digit()
+obj4 = group()
+choice = int(input("Enter user choice:"))
+if choice == 1:
+    print("Checking User card is visa or not")
+    result = [obj1.check_visa(card_number), obj2.val_len(card_number),
+              obj3.val_isdigit(card_number), obj4.val_group(card_number)]
+    if False in result:
+        print("invalid")
+    else:
+        print("valid")
+elif choice == 2:
+    print("Checking User card is Master or not")
+    result=[obj1.check_Master(card_number),
+    obj2.val_len(card_number),
+    obj3.val_isdigit(card_number),
+    obj4.val_group(card_number)]
+    if False in result:
+        print("invalid")
+    else:
+        print("valid")
+elif choice == 3:
+    print("Checeking User card is Discover or not")
+    result=[obj1.check_Discover(card_number),
+    obj2.val_len(card_number),
+    obj3.val_isdigit(card_number),
+    obj4.val_group(card_number)]
+    if False in result:
+        print("invalid")
+    else:
+        print("valid")
+elif choice == 4:
+    print("Checking User card is American express card or not")
+    result=[obj1.check_American(card_number),
+    obj2.val_len(card_number),
+    obj3.val_isdigit(card_number),
+    obj4.val_group(card_number)]
+    if False in result:
+        print("invalid card")
+    else:
+        print("valid card")
+else:
+    print("none")
